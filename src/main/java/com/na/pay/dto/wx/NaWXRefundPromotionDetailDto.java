@@ -17,8 +17,8 @@ public class NaWXRefundPromotionDetailDto {
      * 【券ID】代金券id，单张代金券的编号
      * 【返回必填】
      */
-    @JsonProperty("promotionId")
-    private String promotion_id;
+    @JsonProperty("promotion_id")
+    private String promotionId;
 
     /**
      * 【优惠范围】优惠活动中代金券的适用范围，分为两种类型：

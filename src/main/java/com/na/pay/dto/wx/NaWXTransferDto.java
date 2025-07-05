@@ -41,8 +41,8 @@ public class NaWXTransferDto {
      * 若商户传入收款用户姓名，微信支付会校验收款用户与输入姓名是否一致，并提供电子回单
      * 【选填】
      */
-    @JsonProperty("info_content")
-    private String user_name;
+    @JsonProperty("user_name")
+    private String userName;
 
     /**
      * 【转账金额】 转账金额单位为“分”。

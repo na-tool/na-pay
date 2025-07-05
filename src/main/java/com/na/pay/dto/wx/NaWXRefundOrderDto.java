@@ -28,8 +28,8 @@ public class NaWXRefundOrderDto {
      * transaction_id和out_trade_no必须二选一进行传参。
      * 【选填】
      */
-    @JsonProperty("outTradeNo")
-    private String out_trade_no;
+    @JsonProperty("out_trade_no")
+    private String outTradeNo;
 
     /**
      * 【商户退款单号】 商户系统内部的退款单号，商户系统内部唯一，只能是数字、大小写字母_-|*@ ，同一商户退款单号多次请求只退一笔。不可超过64个字节数。
@@ -79,8 +79,8 @@ public class NaWXRefundOrderDto {
      * 【微信支付退款单号】申请退款受理成功时，该笔退款单在微信支付侧生成的唯一标识
      * 【返回必填】
      */
-    @JsonProperty("refundId")
-    private String refund_id;
+    @JsonProperty("refund_id")
+    private String refundId;
 
     /**
      * 【退款渠道】 订单退款渠道

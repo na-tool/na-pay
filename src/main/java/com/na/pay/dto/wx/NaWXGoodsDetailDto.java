@@ -81,6 +81,6 @@ public class NaWXGoodsDetailDto {
      * 【商品退货数量】 申请退款的商品退货数量。
      * 【退款返回必填】
      */
-    @JsonProperty("refundQuantity")
-    private Long refund_quantity;
+    @JsonProperty("refund_quantity")
+    private Long refundQuantity;
 }

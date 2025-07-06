@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -166,5 +168,25 @@ public class NaGlobalPayUtils {
         System.out.println("*************");
         System.out.println(paramsMap);
         return paramsMap;
+    }
+
+    public static String readKeyStringFromPath(String wxPayPublicKeyPath, boolean wxCertProject) throws IOException {
+        if (wxCertProject) {
+            wxPayPublicKeyPath = getProjectAbsolutePath(wxPayPublicKeyPath);
+        }
+        return readKeyStringFromAbsolutePath(wxPayPublicKeyPath);
+    }
+
+    /**
+     * 读取文件内容为字符串，适用于读取密钥文件内容
+     * @param wxPayPublicKeyPath
+     * @return
+     */
+    private static String readKeyStringFromAbsolutePath(String wxPayPublicKeyPath) {
+        try {
+            return new String(Files.readAllBytes(Paths.get(wxPayPublicKeyPath)), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.na.pay.config;
 
+import com.na.pay.utils.NaGlobalPayUtils;
 import com.na.pay.utils.NaWXPayUtility;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
@@ -112,8 +114,8 @@ public class NaAutoPayConfig {
      */
     private String wxApiCertPath;
 
-    public PrivateKey getPrivateKey(){
-        return NaWXPayUtility.loadPrivateKeyFromPath(wxApiCertPath);
+    public PrivateKey getPrivateKey() throws IOException {
+        return NaWXPayUtility.loadPrivateKeyFromString(NaGlobalPayUtils.readKeyStringFromPath(wxApiCertPath, wxCertProject));
     }
 
     /**
@@ -125,8 +127,8 @@ public class NaAutoPayConfig {
      */
     private String wxPayPublicKeyPath;
 
-    public PublicKey getPayPublicKey(){
-        return NaWXPayUtility.loadPublicKeyFromPath(wxPayPublicKeyPath);
+    public PublicKey getPayPublicKey() throws IOException {
+        return NaWXPayUtility.loadPublicKeyFromString(NaGlobalPayUtils.readKeyStringFromPath(wxPayPublicKeyPath, wxCertProject));
     }
 
     /**
@@ -140,6 +142,9 @@ public class NaAutoPayConfig {
 
 
     private String wxNotifyUrl;
+
+    @Builder.Default
+    private boolean wxCertProject = true;
 
     /**
      * ------------------------------微信配置结束----------------------------------------

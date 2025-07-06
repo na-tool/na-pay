@@ -171,7 +171,7 @@ public class NaPayExeServiceImpl implements INaPayExeService {
         model.setOutTradeNo(orderQueryDto.getOrderId());
         request.setBizModel(model);
 
-        AlipayTradeQueryResponse response = alipayClient.execute(request);
+        AlipayTradeQueryResponse response = naAutoPayConfig.isAliCert() ? alipayClient.certificateExecute(request) : alipayClient.execute(request);
         orderQueryDto.setAlipayTradeQueryResponse(response);
         orderQueryDto.setNaPayStatus(NaPayStatus.QUERY_ORDER_STATUS_SUCCESS);
         return orderQueryDto;
